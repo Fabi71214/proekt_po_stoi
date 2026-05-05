@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ru" class="adaptive">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wildberries — точная копия главной</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f8;
+    }
+
+    .top-bar {
+      background: linear-gradient(90deg, #E81E7D 0%, #B818A4 40%, #9327B4 70%, #6B2FC2 100%);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .top-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-left {
+      display: flex;
+      gap: 24px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .top-left span {
+      cursor: pointer;
+      opacity: 0.9;
+    }
+
+    .top-left span:hover {
+      opacity: 1;
+    }
+
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .travel-switcher {
+      display: flex;
+      gap: 16px;
+    }
+
+    .travel-switcher a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      font-size: 13px;
+    }
+
+    .travel-switcher a:hover {
+      opacity: 1;
+    }
+
+    .currency-selector {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .main-header {
+      background: linear-gradient(90deg, #E81E7D 0%, #B818A4 40%, #9327B4 70%, #6B2FC2 100%);
+      padding: 12px 0 16px;
+    }
+
+    .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .burger-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .burger-btn span {
+      width: 22px;
+      height: 2px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    .logo {
+      color: white;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .search-wrapper {
+      flex: 1;
+      max-width: 900px;
+    }
+
+    .search-box {
+      background: white;
+      border-radius: 50px;
+      padding: 4px 4px 4px 20px;
+      display: flex;
+      align-items: center;
+      height: 52px;
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      padding: 8px 0;
+    }
+
+    .search-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .search-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #cb11ab;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .photo-search-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #f2f3f5;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .address-btn, .login-btn, .cart-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      gap: 3px;
+    }
+
+    .catalog-header {
+      max-width: 1440px;
+      margin: 16px auto 0;
+      padding: 0 16px;
+    }
+
+    .catalog-stats {
+      color: #8a8a9a;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .sort-btn {
+      padding: 10px 16px;
+      background: white;
+      border: 1px solid #e4e4ee;
+      border-radius: 30px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-tag {
+      padding: 10px 16px;
+      background: white;
+      border: 1px solid #e4e4ee;
+      border-radius: 30px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .all-filters-btn {
+      padding: 10px 20px;
+      background: #6725a8;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .products-grid {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 16px 40px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: 0.2s;
+      cursor: pointer;
+      border: 1px solid #f0f0f5;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .product-image {
+      aspect-ratio: 1;
+      background: #f8f8fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      flex-shrink: 0;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Скидка */
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #00c853;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 8px;
+    }
+
+    .favorite-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      color: #000000;
+      z-index: 2;
+    }
+
+    .product-info {
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .current-price {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .old-price {
+      font-size: 13px;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .product-title {
+      font-size: 13px;
+      color: #2b2b36;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 34px;
+    }
+
+    .delivery-btn {
+      margin-top: auto;
+      background: linear-gradient(90deg, #a100ff, #ff00a8);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .wb-wallet-price {
+      font-size: 13px;
+      color: #6725a8;
+      margin-top: 2px;
+    }
+
+    .product-title {
+      font-size: 14px;
+      color: #2b2b36;
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #ff9f00;
+      font-size: 13px;
+    }
+
+    .rating-count {
+      color: #8a8a9a;
+    }
+
+    .delivery-badge {
+      margin-top: auto;
+      padding: 10px;
+      background: linear-gradient(90deg, #E81E7D 0%, #B818A4 40%, #9327B4 70%, #6B2FC2 100%);
+      color: white;
+      font-size: 14px;
+      text-align: center;
+      border-radius:16px;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    .add-product-fab {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      color: #6725a8;
+      border: 2px solid #6725a8;
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(103,37,168,0.3);
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .add-product-fab:hover {
+      background: #6725a8;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      width: 500px;
+      max-width: 90%;
+      border-radius: 24px;
+      padding: 32px;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 24px;
+      color: #2b1b3e;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #4a4a5a;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e4e4ee;
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #6725a8;
+    }
+
+    .file-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px dashed #6725a8;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      background: #faf5ff;
+      color: #6725a8;
+    }
+
+    .file-input::file-selector-button {
+      background: #6725a8;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-right: 12px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #6725a8;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #f2f2f7;
+      color: #3a3a4e;
+    }
+
+    .chat-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      background: #6725a8;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 16px rgba(103,37,168,0.4);
+      transition: transform 0.2s;
+      border: none;
+      color: white;
+    }
+
+    .chat-fab:hover {
+      transform: scale(1.1);
+    }
+
+    .footer {
+      background: #b1b0b0;
+      color: white;
+      padding: 40px 0 20px;
+      margin-top: 40px;
+    }
+
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .footer-column h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-column ul li a:hover {
+      opacity: 1;
+    }
+
+    .footer-bottom {
+      max-width: 1440px;
+      margin: 30px auto 0;
+      padding: 20px 16px 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 1200px) {
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .top-left {
+        gap: 12px;
+        font-size: 12px;
+      }
+      .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<button class="add-product-fab" id="showModalBtn">➕ Добавить товар</button>
+
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <h2>📦 Добавление товара</h2>
+    <form id="addProductForm">
+      <div class="form-group">
+        <label>Изображение товара</label>
+        <input type="file" name="image" accept="image/*" class="file-input">
+      </div>
+      <div class="form-group">
+        <label>Название товара *</label>
+        <input type="text" name="title" placeholder="Например: Детективный роман" required>
+      </div>
+      <div class="form-group">
+        <label>Цена (₽) *</label>
+        <input type="number" name="price" placeholder="499" step="0.01" required>
+      </div>
+      <div class="form-group">
+        <label>Старая цена (₽)</label>
+        <input type="number" name="old_price" placeholder="999" step="0.01">
+      </div>
+      <div class="form-group">
+        <label>Рейтинг (1-5)</label>
+        <input type="number" name="rating" min="1" max="5" step="0.1" value="4.8">
+      </div>
+      <div class="form-group">
+        <label>Когда приедет *</label>
+        <select name="data" required>
+          <option value="Завтра">Завтра</option>
+          <option value="Послезавтра">Послезавтра</option>
+          <option value="Через 3 дня">Через 3 дня</option>
+          <option value="Через 7 дней и более">Через 7 дней и более</option>
+        </select>
+      </div>
+      <input type="hidden" name="seller_id" value="demo_seller_001">
+      <div class="modal-buttons">
+        <button type="button" class="btn btn-secondary" id="closeModalBtn">Отмена</button>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="top-bar">
+  <div class="top-container">
+    <div class="top-left">
+      <span>📍 Орёл</span>
+      <div class="travel-switcher">
+        <a href="#">Wibes</a>
+        <a href="#">Отели</a>
+        <a href="#">Авиабилеты</a>
+        <a href="#">Туры с FUN&SUN</a>
+        <a href="#">Ресейл</a>
+        <a href="#">WB Клуб</a>
+        <a href="#">Бренды</a>
+        <a href="#">Новостройки</a>
+      </div>
+    </div>
+    <div class="top-right">
+      <span>Для бизнеса</span>
+      <span>Работа в WB</span>
+      <span>Кешбэк</span>
+      <div class="currency-selector">🇷🇺 RUB</div>
+    </div>
+  </div>
+</div>
+
+<div class="main-header">
+  <div class="header-container">
+    <div class="logo-section">
+      <div class="burger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <a href="#" class="logo">Wildberries</a>
+    </div>
+    <div class="search-wrapper">
+      <div class="search-box">
+        <input type="text" placeholder="Найти на Wildberries">
+        <div class="search-actions">
+          <button class="search-btn">🔍</button>
+          <button class="photo-search-btn">📷</button>
+        </div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="#" class="address-btn"><span>📍</span><span>Адреса</span></a>
+      <a href="#" class="login-btn"><span>👤</span><span>Войти</span></a>
+      <a href="#" class="cart-btn"><span>🛒</span><span>Корзина</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="catalog-header">
+  <div class="catalog-stats">{{ count }} товаров</div>
+  <div class="filter-bar">
+    <div class="sort-btn">По популярности ▼</div>
+    <div class="filter-tag">Все фильтры</div>
+    <div class="filter-tag">Художественная литература</div>
+    <div class="filter-tag">Цена, ₽</div>
+    <div class="filter-tag">Срок доставки</div>
+    <div class="filter-tag">Возрастные ограничения</div>
+    <div class="filter-tag">Обложка</div>
+    <div class="filter-tag">Категория</div>
+    <button class="all-filters-btn">Все фильтры</button>
+  </div>
+</div>
+
+<div class="products-grid">
+  {% for product in products %}
+    <div class="product-card">
+      <div class="product-image">
+        <img src="/static/images/{{ product[1] }}" alt="{{ product[2] }}">
+        
+        <div class="product-badge">-{{ ((1 - product[3]|float / product[4]|float) * 100)|round }}%</div>
+        <div class="favorite-btn">♡</div>
+      </div>
+
+      <div class="product-info">
+        <div class="price-row">
+          <span class="current-price">{{ product[3] }} ₽</span>
+          {% if product[4] %}
+          <span class="old-price">{{ product[4] }} ₽</span>
+          {% endif %}
+        </div>
+
+        <div class="product-title">{{ product[2] }}</div>
+
+        <div class="delivery-btn">🛒 {{ product[6] }}</div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<button class="chat-fab" title="Онлайн чат">💬</button>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>Покупателям</h3>
+      <ul>
+        <li><a href="#">Частые вопросы</a></li>
+        <li><a href="#">Покупать как бизнес</a></li>
+        <li><a href="#">Доставка по клику из пункта выдачи</a></li>
+        <li><a href="#">Юридическая информация</a></li>
+        <li><a href="#">Как обрабатываем ваши персональные данные</a></li>
+        <li><a href="#">Гид по безопасности</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Продавцам и партнёрам</h3>
+      <ul>
+        <li><a href="#">Продавать товары</a></li>
+        <li><a href="#">Открыть пункт выдачи</a></li>
+        <li><a href="#">Предложить помещение</a></li>
+        <li><a href="#">Развозить грузы</a></li>
+        <li><a href="#">Доставлять заказы</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Наши проекты</h3>
+      <ul>
+        <li><a href="#">Wibes</a></li>
+        <li><a href="#">WB Stream</a></li>
+        <li><a href="#">WB Track</a></li>
+      </ul>
+      <h3 style="margin-top: 20px;">Компания</h3>
+      <ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Пресс-служба</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Вакансии</a></li>
+        <li><a href="#">Сообщить о мошенничестве</a></li>
+        <li><a href="#">Социальные сети</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Приложение</h3>
+      <ul>
+        <li><a href="#">Android и iOS</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © Wildberries 2004–2026. Все права защищены.<br>
+    Применяются рекомендательные технологии
+  </div>
+</footer>
+
+<script>
+const modal = document.getElementById('productModal');
+const showBtn = document.getElementById('showModalBtn');
+const closeBtn = document.getElementById('closeModalBtn');
+const form = document.getElementById('addProductForm');
+
+showBtn.addEventListener('click', () => {
+  modal.style.display = 'flex';
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  try {
+    await fetch('/add_tovar', {
+      method: 'POST',
+      body: formData
+    });
+    modal.style.display = 'none';
+    form.reset();
+  } catch (error) {
+    console.error('Ошибка:', error);
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.style.display === 'flex') {
+    modal.style.display = 'none';
+  }
+});
+</script>
+
+</body>
+</html>
