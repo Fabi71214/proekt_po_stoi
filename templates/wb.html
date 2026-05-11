@@ -609,35 +609,119 @@
       opacity: 0.7;
     }
 
-    @media (max-width: 1200px) {
-      .products-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .top-left {
-        gap: 12px;
-        font-size: 12px;
-      }
-      .footer-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .footer-container {
-        grid-template-columns: 1fr;
-      }
-    }
+@media (max-width: 768px) {
+  .top-bar {
+    padding: 4px 0;
+  }
+  .top-container {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .top-left {
+    font-size: 11px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .travel-switcher {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .travel-switcher a {
+    font-size: 10px;
+  }
+  .top-right {
+    font-size: 11px;
+    gap: 8px;
+  }
+  .filter-bar {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .sort-btn, .filter-tag, .all-filters-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  .catalog-stats {
+    font-size: 12px;
+  }
+  .add-product-fab {
+    top: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    padding: 0;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .add-product-fab span {
+    display: none;
+  }
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0 8px 40px;
+  }
+  .current-price {
+    font-size: 16px;
+  }
+  .product-title {
+    font-size: 12px;
+    min-height: 30px;
+  }
+  .delivery-btn {
+    font-size: 12px;
+    padding: 8px;
+  }
+  .product-badge {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+  .favorite-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+  .search-wrapper {
+    max-width: 44px;
+  }
+  .search-box {
+    padding: 0;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+  }
+  .search-box input {
+    display: none;
+  }
+  .photo-search-btn {
+    display: none;
+  }
+  .address-btn span:last-child,
+  .login-btn span:last-child {
+    display: none;
+  }
+  .header-container {
+    gap: 10px;
+  }
+  .logo {
+    font-size: 22px;
+  }
+  .burger-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
   </style>
 </head>
 <body>
 
-<button class="add-product-fab" id="showModalBtn">➕ Добавить товар</button>
+<button class="add-product-fab" id="showModalBtn">➕ <span>Добавить товар</span></button>
 
 <div class="modal" id="productModal">
   <div class="modal-content">
@@ -684,7 +768,7 @@
 <div class="top-bar">
   <div class="top-container">
     <div class="top-left">
-      <span>📍 Орёл</span>
+      <span>📍 Липецк</span>
       <div class="travel-switcher">
         <a href="#">Wibes</a>
         <a href="#">Отели</a>
